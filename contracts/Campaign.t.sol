@@ -192,9 +192,13 @@ contract CampaignTest is Test {
     vm.expectRevert("ApprovalCount have to be greater than approversCount / 2");
     campaign.finalizeRequest(0);
 
-    // Can finalize request with approvers 2 / 3
+
+    // Can finalize request with approvers 2 / 3 (manager only)
     vm.prank(user2);
     campaign.approveRequest(0);
+    vm.prank(user2); // Only manager can finalize requests
+    vm.expectRevert("Only manager can call this method");
+    campaign.finalizeRequest(0);
     vm.prank(manager);
     campaign.finalizeRequest(0);
 
