@@ -31,16 +31,6 @@ jobs:
       - name: TypeScript type check
         run: npm run type-check --if-present
 
-      # 🟧 Hardhat TS Tests
+      # 🟧 Run Hardhat Tests (Both Solidity and TS)
       - name: Run Hardhat TS tests
         run: npx hardhat test
-
-      # 🟩 Foundry Install
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
-        with:
-          version: nightly
-
-      # 🟩 Foundry Tests (Solidity)
-      - name: Run Foundry tests
-        run: forge test -vvv
